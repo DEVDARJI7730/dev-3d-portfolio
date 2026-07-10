@@ -30,7 +30,7 @@ export const projects = [
     tech: ["JavaScript","HTML5","CSS3","Vite","Three.js"],
     demoUrl: "https://dev-3d-portfolio.onrender.com",
     githubUrl: "https://github.com/DEVDARJI7730/dev-3d-portfolio",
-    icon: "fa-solid fa-camera"
+    icon: "fa-solid fa-terminal"
   }
 ];
 
