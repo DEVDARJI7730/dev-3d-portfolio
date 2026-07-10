@@ -21,6 +21,17 @@ export const projects = [
     githubUrl: "https://github.com/DEVDARJI7730/ISRO",
     icon: "fa-solid fa-camera"
   },
+  {
+    id: "Developer Portfolio Website",
+    title: "Developer Portfolio",
+    subtitle: "Modern Personal Portfolio Website",
+    desc: "A responsive and interactive portfolio website showcasing my projects, technical skills, certifications, and contact information. Built with modern web technologies, it features smooth animations, dark mode, project filtering, and a clean user experience..",
+    category: "Frontend / Web Development",
+    tech: ["JavaScript","HTML5","CSS3","Vite","Three.js"],
+    demoUrl: "https://dev-3d-portfolio.onrender.com",
+    githubUrl: "https://github.com/DEVDARJI7730/dev-3d-portfolio",
+    icon: "fa-solid fa-camera"
+  }
 ];
 
 export const skills = [
