@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev | Full Stack AI Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Dev, Full Stack AI Developer & B.Sc. IT Student. Specializing in AI-powered applications, immersive web experiences, and innovative digital products.">
+  <meta name="keywords" content="Dev, Full Stack AI Developer, GLS University, B.Sc. IT, Devora AI, CampusFind, 3D Portfolio, React, Node.js, Python, Three.js">
+  
+  <!-- Preconnect to external resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <!-- Custom Glowing Cursor -->
+  <div id="cursor-glow" class="cursor-glow"></div>
+  <div id="cursor-dot" class="cursor-dot"></div>
+
+  <!-- Background Canvas for 3D stars / particles -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Ambient Glow Effects -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-container">
+    <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
+  </div>
+
+  <!-- Main Navigation -->
+  <header id="main-header" class="header">
+    <div class="header-container">
+      <a href="#hero" class="logo" id="nav-logo">
+        <span class="logo-accent">&lt;</span>DEV<span class="logo-accent"> /&gt;</span>
+      </a>
+      <nav class="nav-menu" id="nav-menu">
+        <ul>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#experience" class="nav-link">Timeline</a></li>
+          <li><a href="#github" class="nav-link">GitHub</a></li>
+          <li><a href="#contact" class="nav-link nav-btn">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span> Full-Stack AI Developer
+        </div>
+        <h1 class="hero-title">
+          Hello, I'm <span class="text-glow-purple">Dev</span>
+        </h1>
+        <h2 class="hero-subtitle">
+          <span id="typing-text" class="typing-text"></span><span class="typed-cursor">|</span>
+        </h2>
+        <p class="hero-description">
+          Building AI-powered applications, immersive web experiences, and innovative digital products that solve real-world problems. Currently pursuing my B.Sc. IT at GLS University.
+        </p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn btn-primary magnetic" id="hero-btn-projects">
+            <span>View Projects <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+          <a href="#contact" class="btn btn-secondary magnetic" id="hero-btn-contact">
+            <span>Contact Me</span>
+          </a>
+          <a
+    href="/Dev_Darji_Resume.pdf"
+    download="resume.pdf"
+    class="btn btn-outline magnetic"
+    id="hero-btn-resume"
+>
+    <span>
+        Resume <i class="fa-solid fa-download"></i>
+    </span>
+</a>
+        </div>
+      </div>
+      
+      <!-- 3D Interactive Container -->
+      <div class="hero-canvas-container">
+        <div class="canvas-glow"></div>
+        <canvas id="hero-3d-canvas"></canvas>
+        <div class="interactive-overlay">
+          <div class="cyber-brackets">
+            <span class="bracket bracket-tl"></span>
+            <span class="bracket bracket-tr"></span>
+            <span class="bracket bracket-bl"></span>
+            <span class="bracket bracket-br"></span>
+          </div>
+          <div class="interactive-hint">
+            <i class="fa-solid fa-arrows-to-eye"></i> Drag to rotate 3D hologram workspace
+          </div>
+          <!-- Code snippet floating -->
+          <div class="floating-code-card">
+            <div class="card-dot-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <pre><code><span class="code-keyword">const</span> ai = <span class="code-keyword">new</span> <span class="code-class">DevoraAI</span>();
+<span class="code-keyword">await</span> ai.<span class="code-func">initialize</span>({
+  creative: <span class="code-value">true</span>,
+  visionary: <span class="code-value">true</span>
+});</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated Scroll Indicator -->
+    <a href="#about" class="scroll-indicator" aria-label="Scroll to About Me section">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <div class="arrows">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </a>
+  </section>
+
+  <!-- About Me Section -->
+  <section id="about" class="about-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="number">01.</span> About Me</h2>
+        <div class="section-line"></div>
+      </div>
+      
+      <div class="about-grid">
+        <div class="about-info-card glass-panel">
+          <h3>Professional Identity</h3>
+          <p>
+            I am a highly motivated <strong>3rd-year B.Sc. IT student at GLS University</strong>, striving to make my mark as a <strong>Full-Stack AI Developer</strong>. My goal is to build intelligent, beautifully designed applications that merge robust backend intelligence with state-of-the-art interactive frontends.
+          </p>
+          <p>
+            I have experience building projects such as CampusFind, RFID Attendance System, AI-powered assistants, and responsive web applications. My technical stack includes React, Next.js, Node.js, Express.js, MongoDB, JavaScript, Python, Java, C++, SQL, Git, and GitHub. I love exploring artificial intelligence, cloud technologies, and scalable software architecture.
+          </p>
+          <p>
+            I thrive at the intersection of AI, modern UI/UX design, and 3D web experiences. I love transforming complex ideas into user-friendly digital solutions.
+          </p>
+          <div class="about-tags">
+            <span class="about-tag">AI & ML</span>
+            <span class="about-tag">Full-Stack Dev</span>
+            <span class="about-tag">GLS University</span>
+            <span class="about-tag">Startup Enthusiast</span>
+          </div>
+        </div>
+
+        <div class="about-stats-grid">
+          <!-- Stat Item 1 -->
+          <div class="stat-card glass-panel count-up-card">
+            <div class="stat-icon"><i class="fa-solid fa-code-fork text-glow-blue"></i></div>
+            <div class="stat-num" data-val="12">12</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <!-- Stat Item 2 -->
+          <div class="stat-card glass-panel count-up-card">
+            <div class="stat-icon"><i class="fa-solid fa-brain text-glow-purple"></i></div>
+            <div class="stat-num" data-val="25">15</div>
+            <div class="stat-label">Technologies Mastered</div>
+          </div>
+          <!-- Stat Item 3 -->
+          <div class="stat-card glass-panel count-up-card">
+            <div class="stat-icon"><i class="fa-brands fa-github text-glow-cyan"></i></div>
+            <div class="stat-num" data-val="450">17</div>
+            <div class="stat-label">GitHub Contributions</div>
+          </div>
+          <!-- Stat Item 4 -->
+          <div class="stat-card glass-panel count-up-card">
+            <div class="stat-icon"><i class="fa-solid fa-award text-glow-pink"></i></div>
+            <div class="stat-num" data-val="8">16</div>
+            <div class="stat-label">Certificates Earned</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="number">02.</span> Technical Skills</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <p class="section-intro">
+        A breakdown of languages, tools, and technologies I work with to design, develop, and deploy intelligent web applications.
+      </p>
+
+      <div class="skills-grid" id="skills-grid-container">
+        <!-- Rendered dynamically by main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section id="projects" class="projects-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="number">03.</span> Featured Projects</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="projects-grid" id="projects-grid-container">
+        <!-- Rendered dynamically by main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience & Education Timeline -->
+  <section id="experience" class="experience-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="number">04.</span> Academic & Career Journey</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <div id="timeline-list">
+          <!-- Rendered dynamically by main.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="certifications-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="number">05.</span> Certifications</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="certs-grid" id="certs-grid-container">
+        <!-- Rendered dynamically by main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- GitHub Activity Section -->
+  <section id="github" class="github-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="number">06.</span> GitHub Contributions</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="github-panel glass-panel">
+        <div class="github-header">
+          <div class="github-user">
+            <div class="github-avatar">
+              <i class="fa-brands fa-github"></i>
+            </div>
+            <div class="github-title-info">
+              <h3>@DEVDARJI7730</h3>
+              <p>Full Stack AI Developer contributions grid</p>
+            </div>
+          </div>
+          <div class="github-stats-summary">
+            <div class="github-stat-item">
+              <span class="stat-count" id="total-commits">100</span>
+              <span class="stat-desc">Commits past year</span>
+            </div>
+            <div class="github-stat-item">
+              <span class="stat-count" id="active-days">243</span>
+              <span class="stat-desc">Active days</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- The simulated contribution grid -->
+        <div class="github-graph-wrapper">
+          <div class="github-months">
+            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+          </div>
+          <div class="github-grid" id="github-contribution-grid">
+            <!-- Rendered dynamically by github-graph.js -->
+          </div>
+          <div class="github-legend">
+            <span>Less</span>
+            <span class="legend-box level-0"></span>
+            <span class="legend-box level-1"></span>
+            <span class="legend-box level-2"></span>
+            <span class="legend-box level-3"></span>
+            <span class="legend-box level-4"></span>
+            <span>More</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="number">07.</span> Contact Me</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Get In Touch</h3>
+          <p>
+            Whether you want to hire me, collaborate on a project, ask a question about my research, or just say hello, my inbox is always open. Fill out the form or reach out through my socials!
+          </p>
+          
+          <div class="contact-details">
+            <div class="contact-detail-item">
+              <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+              <div class="detail-text">
+                <h4>Email</h4>
+                <a>darjidev2504@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-detail-item">
+              <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="detail-text">
+                <h4>Location</h4>
+                <span>Ahmedabad, Gujarat, India</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="https://github.com/DEVDARJI7730" target="_blank" class="social-icon magnetic" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/dev-darji-65836b318/" target="_blank" class="social-icon magnetic" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/devdarji_7730/" target="_blank" class="social-icon magnetic" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:darjidev2504@gmail.com" class="social-icon magnetic" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-form-container glass-panel">
+          <form id="contact-form" class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="form-name">Name</label>
+                <input type="text" id="form-name" name="name" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="form-email">Email</label>
+                <input type="email" id="form-email" name="email" placeholder="john@example.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="form-subject">Subject</label>
+              <input type="text" id="form-subject" name="subject" placeholder="Collaboration Idea" required>
+            </div>
+            <div class="form-group">
+              <label for="form-message">Message</label>
+              <textarea id="form-message" name="message" rows="6" placeholder="Hi Dev, I'd love to chat about..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary magnetic" id="submit-btn">
+              <span>Send Message <i class="fa-solid fa-paper-plane"></i></span>
+            </button>
+            <div id="form-status" class="form-status"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <!-- Animated Waves -->
+    <div class="waves-container">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
+        </defs>
+        <g class="wave-parallax">
+          <use href="#gentle-wave" x="48" y="0" fill="rgba(189, 0, 255, 0.07)" />
+          <use href="#gentle-wave" x="48" y="3" fill="rgba(0, 85, 255, 0.05)" />
+          <use href="#gentle-wave" x="48" y="5" fill="rgba(0, 240, 255, 0.03)" />
+          <use href="#gentle-wave" x="48" y="7" fill="rgba(3, 3, 12, 0.8)" />
+        </g>
+      </svg>
+    </div>
+
+    <div class="footer-content">
+      <p>Made with <i class="fa-solid fa-heart text-glow-pink pulse-slow"></i> by Dev</p>
+      <p class="copyright">&copy; 2026 Dev. All rights reserved.</p>
+      
+      <!-- Back to Top Button -->
+      <a href="#hero" class="back-to-top magnetic" id="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- App scripts module entrypoint -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
