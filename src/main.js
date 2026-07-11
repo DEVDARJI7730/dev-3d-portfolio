@@ -358,6 +358,11 @@ function renderGithubContributions() {
    9. Magnetic Button Effect (GSAP Spring)
    ========================================================================== */
 function initMagneticButtons() {
+  // Disable magnetic movement on touch devices to prevent element shifting from canceling click events
+  if (window.matchMedia("(pointer: coarse)").matches || ('ontouchstart' in window) || navigator.maxTouchPoints > 0) {
+    return;
+  }
+
   const magnetics = document.querySelectorAll('.magnetic');
   
   magnetics.forEach(btn => {
