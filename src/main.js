@@ -95,8 +95,7 @@ function initTypingAnimation() {
   const roles = [
     "Full-Stack AI Developer",
     "3rd Year B.Sc. IT Student",
-    "GLS University Scholar",
-    "Creative Technical UI/UX Designer"
+    "GLS University Scholar"
   ];
   
   let roleIndex = 0;
