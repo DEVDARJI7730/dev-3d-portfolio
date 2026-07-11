@@ -98,7 +98,7 @@ export const timeline = [
     date: "Present Goal",
     title: "Aspiring Full Stack AI Engineer",
     subtitle: "Developer Journey",
-    text: "Bridging the gap between traditional software systems and AI integrations. Developing applications like Devora AI and CampusFind, mastering full-stack frameworks (MERN), exploring prompt optimization, fine-tuning APIs, and building interactive 3D web spaces."
+    text: "Bridging the gap between traditional software systems and AI integrations. Developing applications like Devora AI, mastering full-stack frameworks (MERN), exploring prompt optimization, fine-tuning APIs, and building interactive 3D web spaces."
   },
   {
     date: "Dream Vision",
