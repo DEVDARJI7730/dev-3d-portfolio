@@ -82,8 +82,7 @@ export const skills = [
       { name: "Git", icon: "fa-brands fa-git-alt" },
       { name: "GitHub", icon: "fa-brands fa-github" },
       { name: "VS Code", icon: "fa-solid fa-code" },
-      { name: "Figma", icon: "fa-brands fa-figma" },
-      { name: "Antigravity", icon: "fa-solid fa-rocket" }
+      { name: "Figma", icon: "fa-brands fa-figma" }
     ]
   }
 ];
