@@ -521,20 +521,37 @@ function initContactForm() {
     btnSpan.innerHTML = `Sending... <i class="fa-solid fa-circle-notch fa-spin"></i>`;
     submitBtn.disabled = true;
 
-    // Simulate Network Request (can easily plug EmailJS template keys here)
-    setTimeout(() => {
-      // Success feedback
-      statusEl.textContent = "Transmission successful! Message received.";
-      statusEl.className = "form-status success";
-      
-      form.reset();
+    const formData = new FormData(form);
+    
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    })
+    .then(async (response) => {
+      let json = await response.json();
+      if (response.status === 200) {
+        statusEl.textContent = "Transmission successful! Message received.";
+        statusEl.className = "form-status success";
+        form.reset();
+      } else {
+        statusEl.textContent = json.message || "Something went wrong!";
+        statusEl.className = "form-status error";
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      statusEl.textContent = "Network error! Message not sent.";
+      statusEl.className = "form-status error";
+    })
+    .then(() => {
       btnSpan.innerHTML = originalText;
       submitBtn.disabled = false;
       
       // Clear success notification after 5s
       setTimeout(() => {
         statusEl.textContent = "";
+        statusEl.className = "form-status";
       }, 5000);
-    }, 2000);
+    });
   });
 }
