@@ -303,31 +303,43 @@ function renderGithubContributions() {
   const startDate = new Date();
   startDate.setDate(startDate.getDate() - 365);
 
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
   for (let w = 0; w < columns; w++) {
     for (let d = 0; d < daysPerWeek; d++) {
       const currentDate = new Date(startDate);
       currentDate.setDate(startDate.getDate() + (w * 7) + d);
 
-      // Generate random contribution activity level
-      const dateString = currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-      let level = 0;
+      // Map the active cells exactly to match the user's real GitHub screenshot
       let commits = 0;
+      if (w === 1 && d === 5) commits = 4;
+      else if (w === 2 && d === 5) commits = 4;
+      else if (w === 7 && d === 1) commits = 4;
+      else if (w === 7 && d === 3) commits = 4;
+      else if (w === 10 && d === 1) commits = 3;
+      else if (w === 18 && d === 1) commits = 3;
+      else if (w === 20 && d === 4) commits = 3;
+      else if (w === 37 && d === 1) commits = 3;
+      else if (w === 45 && d === 1) commits = 4;
+      else if (w === 45 && d === 3) commits = 4;
+      else if (w === 46 && d === 5) commits = 4;
+      else if (w === 46 && d === 6) commits = 4;
+      else if (w === 47 && d === 0) commits = 4;
+      else if (w === 51 && d === 1) commits = 8;
+      else if (w === 51 && d === 2) commits = 12;
+      else if (w === 51 && d === 3) commits = 2;
+      else if (w === 51 && d === 4) commits = 15;
+      else if (w === 51 && d === 5) commits = 8;
+      else if (w === 51 && d === 6) commits = 10;
+      else if (w === 51 && d === 0) commits = 5;
+      else if (w === 52 && d === 1) commits = 6;
 
-      // Make weekends less active and simulate some high contribution waves
-      const dayOfWeek = currentDate.getDay();
-      const randomWeight = Math.random();
+      let level = 0;
+      if (commits === 0) level = 0;
+      else if (commits <= 2) level = 1;
+      else if (commits <= 4) level = 2;
+      else if (commits <= 8) level = 3;
+      else level = 4;
 
-      if (dayOfWeek !== 0 && dayOfWeek !== 6 && randomWeight > 0.3) {
-        commits = Math.floor(randomWeight * 8);
-        if (commits === 0) level = 0;
-        else if (commits <= 2) level = 1;
-        else if (commits <= 4) level = 2;
-        else if (commits <= 6) level = 3;
-        else level = 4;
-      }
-
+      const dateString = currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       const tooltipText = `${commits === 0 ? 'No' : commits} contribution${commits !== 1 ? 's' : ''} on ${dateString}`;
       cellsHTML += `<div class="github-cell level-${level}" data-tooltip="${tooltipText}"></div>`;
     }
