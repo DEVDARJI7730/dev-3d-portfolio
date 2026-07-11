@@ -63,7 +63,6 @@ export const skills = [
     icon: "fa-solid fa-server",
     items: [
       { name: "Node.js", icon: "fa-brands fa-node-js" },
-      { name: "Express.js", icon: "fa-solid fa-route" },
       { name: "MongoDB", icon: "fa-solid fa-leaf" }
     ]
   },
