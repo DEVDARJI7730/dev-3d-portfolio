@@ -73,10 +73,7 @@ export const skills = [
     items: [
       { name: "OpenAI APIs", icon: "fa-solid fa-bolt" },
       { name: "AI Chatbots", icon: "fa-solid fa-comment-dots" },
-      { name: "Prompt Engineering", icon: "fa-solid fa-terminal" },
-      { name: "Image Gen", icon: "fa-solid fa-image" },
-      { name: "Speech Recognition", icon: "fa-solid fa-microphone" },
-      { name: "NLP", icon: "fa-solid fa-language" }
+      { name: "Prompt Engineering", icon: "fa-solid fa-terminal" }
     ]
   },
   {
@@ -86,7 +83,6 @@ export const skills = [
       { name: "Git", icon: "fa-brands fa-git-alt" },
       { name: "GitHub", icon: "fa-brands fa-github" },
       { name: "VS Code", icon: "fa-solid fa-code" },
-      { name: "Postman", icon: "fa-solid fa-envelope-open-text" },
       { name: "Figma", icon: "fa-brands fa-figma" }
     ]
   }
