@@ -274,17 +274,23 @@ function renderCertifications() {
   const container = document.getElementById('certs-grid-container');
   if (!container) return;
 
-  container.innerHTML = certifications.map(cert => `
-    <div class="cert-card glass-panel">
-      <div class="cert-icon">
-        <i class="${cert.icon}"></i>
-      </div>
-      <div class="cert-info">
-        <h3>${cert.title}</h3>
-        <p>${cert.issuer} &bull; ${cert.date}</p>
-      </div>
-    </div>
-  `).join('');
+  container.innerHTML = certifications.map(cert => {
+    const hasLink = cert.credentialUrl && cert.credentialUrl !== "";
+    const cardTag = hasLink ? 'a' : 'div';
+    const linkAttr = hasLink ? `href="${cert.credentialUrl}" target="_blank" class="cert-card glass-panel magnetic"` : `class="cert-card glass-panel"`;
+    
+    return `
+      <${cardTag} ${linkAttr}>
+        <div class="cert-icon">
+          <i class="${cert.icon}"></i>
+        </div>
+        <div class="cert-info">
+          <h3>${cert.title} ${hasLink ? '<i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem; margin-left: 4px; opacity: 0.7;"></i>' : ''}</h3>
+          <p>${cert.issuer} &bull; ${cert.date}</p>
+        </div>
+      </${cardTag}>
+    `;
+  }).join('');
 }
 
 /* ==========================================================================
