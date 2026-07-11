@@ -93,7 +93,7 @@ function initTypingAnimation() {
   if (!typingSpan) return;
 
   const roles = [
-    "Full-Stack AI Developer",
+    "Full-Stack Developer | AI/ML Enthusiast",
     "3rd Year B.Sc. IT Student",
     "GLS University Scholar"
   ];
