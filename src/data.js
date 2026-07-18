@@ -93,6 +93,7 @@ export const skills = [
     icon: "fa-solid fa-brain",
     items: [
       { name: "OpenAI APIs", icon: "fa-solid fa-bolt" },
+      { name: "Gemini AI", icon: "fa-solid fa-wand-magic-sparkles" },
       { name: "AI Chatbots", icon: "fa-solid fa-comment-dots" },
       { name: "Prompt Engineering", icon: "fa-solid fa-terminal" }
     ]
