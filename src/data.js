@@ -22,6 +22,17 @@ export const projects = [
     icon: "fa-solid fa-camera"
   },
   {
+    id: "skillswap-ai",
+    title: "Skill Swap AI",
+    subtitle: "AI-Powered Skill Exchange & P2P Learning Platform",
+    desc: "An AI-driven peer-to-peer learning platform that connects users wishing to trade skills. The system matches users based on their learning goals, interests, and expertise, facilitating mutual skill sharing with automated recommendations, collaborative channels, and progress tracking.",
+    category: "Full Stack / AI",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "Socket.io", "Git"],
+    demoUrl: "https://skillswap-frontend-1gv8.onrender.com",
+    githubUrl: "https://github.com/DEVDARJI7730/skillswap-ai",
+    icon: "fa-solid fa-people-arrows"
+  },
+  {
     id: "Developer Portfolio Website",
     title: "Developer Portfolio",
     subtitle: "Modern Personal Portfolio Website",
