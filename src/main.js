@@ -297,87 +297,120 @@ function renderCertifications() {
 /* ==========================================================================
    8. Simulated GitHub Contributions Graph
    ========================================================================== */
-function renderGithubContributions() {
+async function renderGithubContributions() {
   const grid = document.getElementById('github-contribution-grid');
   if (!grid) return;
 
-  // Generate 53 columns (weeks), each containing 7 cells (days)
-  const columns = 53;
-  const daysPerWeek = 7;
-  let cellsHTML = '';
-  
-  // Start from 365 days ago, aligned to the previous Sunday
-  const startDate = new Date();
-  startDate.setDate(startDate.getDate() - 365);
-  const startDay = startDate.getDay();
-  startDate.setDate(startDate.getDate() - startDay);
-
-  let totalCommits = 0;
-  let activeDaysCount = 0;
-
-  for (let w = 0; w < columns; w++) {
-    for (let d = 0; d < daysPerWeek; d++) {
-      const currentDate = new Date(startDate);
-      currentDate.setDate(startDate.getDate() + (w * 7) + d);
-
-      // Map the active cells exactly to match the user's real GitHub screenshot
-      let commits = 0;
-      // Sep
-      if (w === 8 && d === 1) commits = 3;
-      else if (w === 8 && d === 3) commits = 3;
-      else if (w === 10 && d === 1) commits = 3;
-      // Nov
-      else if (w === 18 && d === 1) commits = 3;
-      else if (w === 19 && d === 5) commits = 2;
-      // Mar
-      else if (w === 34 && d === 1) commits = 3;
-      // May
-      else if (w === 43 && d === 5) commits = 4;
-      else if (w === 44 && d === 3) commits = 4;
-      else if (w === 44 && d === 5) commits = 2;
-      else if (w === 44 && d === 1) commits = 2;
-      // Jun
-      else if (w === 48 && d === 5) commits = 4;
-      else if (w === 49 && d === 5) commits = 4;
-      else if (w === 50 && d === 5) commits = 4;
-      // Jul (Week 51)
-      else if (w === 51 && d === 1) commits = 6;
-      else if (w === 51 && d === 3) commits = 3;
-      else if (w === 51 && d === 5) commits = 14;
-      else if (w === 51 && d === 6) commits = 4;
-      else if (w === 51 && d === 0) commits = 8;
-      // Jul (Week 52)
-      else if (w === 52 && d === 1) commits = 18;
-      else if (w === 52 && d === 3) commits = 8;
-      else if (w === 52 && d === 5) commits = 20;
-      else if (w === 52 && d === 6) commits = 10;
-      else if (w === 52 && d === 0) commits = 15;
-
-      if (commits > 0) {
-        totalCommits += commits;
-        activeDaysCount++;
-      }
-
-      let level = 0;
-      if (commits === 0) level = 0;
-      else if (commits <= 2) level = 1;
-      else if (commits <= 4) level = 2;
-      else if (commits <= 8) level = 3;
-      else level = 4;
-
-      const dateString = currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-      const tooltipText = `${commits === 0 ? 'No' : commits} contribution${commits !== 1 ? 's' : ''} on ${dateString}`;
-      cellsHTML += `<div class="github-cell level-${level}" data-tooltip="${tooltipText}"></div>`;
-    }
-  }
-
-  grid.innerHTML = cellsHTML;
-
-  // Update stats dynamically in the DOM
   const commitsEl = document.getElementById('total-commits');
   const activeDaysEl = document.getElementById('active-days');
-  if (commitsEl) commitsEl.textContent = totalCommits;
-  if (activeDaysEl) activeDaysEl.textContent = activeDaysCount;
+
+  // Fallback defaults
+  let totalCommits = 147;
+  let activeDaysCount = 23;
+  let cellsHTML = '';
+
+  try {
+    // Attempt real-time fetch from the public contributions proxy API
+    const response = await fetch('https://github-contributions-api.deno.dev/DEVDARJI7730.json');
+    if (!response.ok) throw new Error('API network response error');
+
+    const data = await response.json();
+    totalCommits = data.totalContributions || 0;
+    activeDaysCount = 0;
+
+    data.weeks.forEach(week => {
+      week.forEach(day => {
+        let level = 0;
+        if (day.contributionLevel === 'FIRST_QUARTILE') level = 1;
+        else if (day.contributionLevel === 'SECOND_QUARTILE') level = 2;
+        else if (day.contributionLevel === 'THIRD_QUARTILE') level = 3;
+        else if (day.contributionLevel === 'FOURTH_QUARTILE') level = 4;
+
+        if (day.contributionCount > 0) {
+          activeDaysCount++;
+        }
+
+        const dateObj = new Date(day.date);
+        const dateString = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const tooltipText = `${day.contributionCount === 0 ? 'No' : day.contributionCount} contribution${day.contributionCount !== 1 ? 's' : ''} on ${dateString}`;
+        
+        cellsHTML += `<div class="github-cell level-${level}" data-tooltip="${tooltipText}"></div>`;
+      });
+    });
+
+    grid.innerHTML = cellsHTML;
+    if (commitsEl) commitsEl.textContent = totalCommits;
+    if (activeDaysEl) activeDaysEl.textContent = activeDaysCount;
+
+  } catch (error) {
+    console.warn('Real-time GitHub contributions fetch failed, falling back to simulated data:', error);
+    
+    // Graceful fallback to static high-accuracy mock layout
+    const columns = 53;
+    const daysPerWeek = 7;
+    cellsHTML = '';
+    totalCommits = 147;
+    activeDaysCount = 23;
+
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - 365);
+    const startDay = startDate.getDay();
+    startDate.setDate(startDate.getDate() - startDay);
+
+    for (let w = 0; w < columns; w++) {
+      for (let d = 0; d < daysPerWeek; d++) {
+        const currentDate = new Date(startDate);
+        currentDate.setDate(startDate.getDate() + (w * 7) + d);
+
+        let commits = 0;
+        // Sep
+        if (w === 8 && d === 1) commits = 3;
+        else if (w === 8 && d === 3) commits = 3;
+        else if (w === 10 && d === 1) commits = 3;
+        // Nov
+        else if (w === 18 && d === 1) commits = 3;
+        else if (w === 19 && d === 5) commits = 2;
+        // Mar
+        else if (w === 34 && d === 1) commits = 3;
+        // May
+        else if (w === 43 && d === 5) commits = 4;
+        else if (w === 44 && d === 3) commits = 4;
+        else if (w === 44 && d === 5) commits = 2;
+        else if (w === 44 && d === 1) commits = 2;
+        // Jun
+        else if (w === 48 && d === 5) commits = 4;
+        else if (w === 49 && d === 5) commits = 4;
+        else if (w === 50 && d === 5) commits = 4;
+        // Jul (Week 51)
+        else if (w === 51 && d === 1) commits = 6;
+        else if (w === 51 && d === 3) commits = 3;
+        else if (w === 51 && d === 5) commits = 14;
+        else if (w === 51 && d === 6) commits = 4;
+        else if (w === 51 && d === 0) commits = 8;
+        // Jul (Week 52)
+        else if (w === 52 && d === 1) commits = 18;
+        else if (w === 52 && d === 3) commits = 8;
+        else if (w === 52 && d === 5) commits = 20;
+        else if (w === 52 && d === 6) commits = 10;
+        else if (w === 52 && d === 0) commits = 15;
+
+        let level = 0;
+        if (commits === 0) level = 0;
+        else if (commits <= 2) level = 1;
+        else if (commits <= 4) level = 2;
+        else if (commits <= 8) level = 3;
+        else level = 4;
+
+        const dateString = currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const tooltipText = `${commits === 0 ? 'No' : commits} contribution${commits !== 1 ? 's' : ''} on ${dateString}`;
+        cellsHTML += `<div class="github-cell level-${level}" data-tooltip="${tooltipText}"></div>`;
+      }
+    }
+
+    grid.innerHTML = cellsHTML;
+    if (commitsEl) commitsEl.textContent = totalCommits;
+    if (activeDaysEl) activeDaysEl.textContent = activeDaysCount;
+  }
 }
 
 /* ==========================================================================
