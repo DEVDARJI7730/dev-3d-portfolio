@@ -306,9 +306,14 @@ function renderGithubContributions() {
   const daysPerWeek = 7;
   let cellsHTML = '';
   
-  // Start from 365 days ago
+  // Start from 365 days ago, aligned to the previous Sunday
   const startDate = new Date();
   startDate.setDate(startDate.getDate() - 365);
+  const startDay = startDate.getDay();
+  startDate.setDate(startDate.getDate() - startDay);
+
+  let totalCommits = 0;
+  let activeDaysCount = 0;
 
   for (let w = 0; w < columns; w++) {
     for (let d = 0; d < daysPerWeek; d++) {
@@ -317,27 +322,41 @@ function renderGithubContributions() {
 
       // Map the active cells exactly to match the user's real GitHub screenshot
       let commits = 0;
-      if (w === 1 && d === 5) commits = 4;
-      else if (w === 2 && d === 5) commits = 4;
-      else if (w === 7 && d === 1) commits = 4;
-      else if (w === 7 && d === 3) commits = 4;
+      // Sep
+      if (w === 8 && d === 1) commits = 3;
+      else if (w === 8 && d === 3) commits = 3;
       else if (w === 10 && d === 1) commits = 3;
+      // Nov
       else if (w === 18 && d === 1) commits = 3;
-      else if (w === 20 && d === 4) commits = 3;
-      else if (w === 37 && d === 1) commits = 3;
-      else if (w === 45 && d === 1) commits = 4;
-      else if (w === 45 && d === 3) commits = 4;
-      else if (w === 46 && d === 5) commits = 4;
-      else if (w === 46 && d === 6) commits = 4;
-      else if (w === 47 && d === 0) commits = 4;
-      else if (w === 51 && d === 1) commits = 8;
-      else if (w === 51 && d === 2) commits = 12;
-      else if (w === 51 && d === 3) commits = 2;
-      else if (w === 51 && d === 4) commits = 15;
-      else if (w === 51 && d === 5) commits = 8;
-      else if (w === 51 && d === 6) commits = 10;
-      else if (w === 51 && d === 0) commits = 5;
-      else if (w === 52 && d === 1) commits = 6;
+      else if (w === 19 && d === 5) commits = 2;
+      // Mar
+      else if (w === 34 && d === 1) commits = 3;
+      // May
+      else if (w === 43 && d === 5) commits = 4;
+      else if (w === 44 && d === 3) commits = 4;
+      else if (w === 44 && d === 5) commits = 2;
+      else if (w === 44 && d === 1) commits = 2;
+      // Jun
+      else if (w === 48 && d === 5) commits = 4;
+      else if (w === 49 && d === 5) commits = 4;
+      else if (w === 50 && d === 5) commits = 4;
+      // Jul (Week 51)
+      else if (w === 51 && d === 1) commits = 6;
+      else if (w === 51 && d === 3) commits = 3;
+      else if (w === 51 && d === 5) commits = 14;
+      else if (w === 51 && d === 6) commits = 4;
+      else if (w === 51 && d === 0) commits = 8;
+      // Jul (Week 52)
+      else if (w === 52 && d === 1) commits = 18;
+      else if (w === 52 && d === 3) commits = 8;
+      else if (w === 52 && d === 5) commits = 20;
+      else if (w === 52 && d === 6) commits = 10;
+      else if (w === 52 && d === 0) commits = 15;
+
+      if (commits > 0) {
+        totalCommits += commits;
+        activeDaysCount++;
+      }
 
       let level = 0;
       if (commits === 0) level = 0;
@@ -353,6 +372,12 @@ function renderGithubContributions() {
   }
 
   grid.innerHTML = cellsHTML;
+
+  // Update stats dynamically in the DOM
+  const commitsEl = document.getElementById('total-commits');
+  const activeDaysEl = document.getElementById('active-days');
+  if (commitsEl) commitsEl.textContent = totalCommits;
+  if (activeDaysEl) activeDaysEl.textContent = activeDaysCount;
 }
 
 /* ==========================================================================
