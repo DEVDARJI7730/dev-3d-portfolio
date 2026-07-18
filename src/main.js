@@ -195,9 +195,11 @@ function renderProjects() {
           <a href="${proj.githubUrl}" target="_blank" class="project-overlay-link" title="GitHub Source" aria-label="GitHub Source">
             <i class="fa-brands fa-github"></i>
           </a>
+          ${proj.demoUrl ? `
           <a href="${proj.demoUrl}" target="_blank" class="project-overlay-link" title="Live Demo" aria-label="Live Demo">
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
+          ` : ''}
         </div>
       </div>
       <div class="project-body">

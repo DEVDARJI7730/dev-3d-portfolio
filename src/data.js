@@ -33,6 +33,17 @@ export const projects = [
     icon: "fa-solid fa-people-arrows"
   },
   {
+    id: "devora-ai",
+    title: "DevoraAI",
+    subtitle: "Enterprise-Grade Full-Stack AI Assistant Dashboard",
+    desc: "An enterprise-grade, full-stack AI assistant dashboard styled with a modern dark theme and glassmorphic panels. It consolidates multiple generative and analytical models into a single local workspace for streaming conversational reasoning, image generation, voice synthesis, and document evaluations.",
+    category: "Full Stack / AI",
+    tech: ["React.js", "Tailwind CSS", "Framer Motion", "Zustand", "Node.js", "Express.js", "FastAPI", "MongoDB Atlas", "Gemini 3.5 Flash", "FLUX.1"],
+    demoUrl: null,
+    githubUrl: "https://github.com/DEVDARJI7730/devora-ai",
+    icon: "fa-solid fa-robot"
+  },
+  {
     id: "Developer Portfolio Website",
     title: "Developer Portfolio",
     subtitle: "Modern Personal Portfolio Website",
