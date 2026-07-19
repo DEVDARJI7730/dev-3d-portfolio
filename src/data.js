@@ -21,7 +21,7 @@ export const projects = [
     demoUrl: "https://irvision-ai-client.onrender.com",
     githubUrl: "https://github.com/DEVDARJI7730/ISRO",
     icon: "fa-solid fa-camera",
-    image: "/irvision-ai.jpg"
+    image: "/irvision-ai.png"
   },
   {
     id: "skillswap-ai",
