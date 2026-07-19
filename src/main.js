@@ -188,9 +188,13 @@ function renderProjects() {
     <div class="project-card glass-panel" data-id="${proj.id}">
       <div class="project-image-wrapper">
         <span class="project-badge">${proj.category}</span>
-        <div class="project-image-placeholder">
-          <i class="${proj.icon}"></i>
-        </div>
+        ${proj.image ? `
+          <img src="${proj.image}" alt="${proj.title}" class="project-image" loading="lazy">
+        ` : `
+          <div class="project-image-placeholder">
+            <i class="${proj.icon}"></i>
+          </div>
+        `}
         <div class="project-links-overlay">
           <a href="${proj.githubUrl}" target="_blank" class="project-overlay-link" title="GitHub Source" aria-label="GitHub Source">
             <i class="fa-brands fa-github"></i>
@@ -199,7 +203,11 @@ function renderProjects() {
           <a href="${proj.demoUrl}" target="_blank" class="project-overlay-link" title="Live Demo" aria-label="Live Demo">
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
-          ` : ''}
+          ` : `
+          <a href="#" class="project-overlay-link disabled" title="Live Demo Unavailable" aria-label="Live Demo Unavailable" onclick="return false;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          `}
         </div>
       </div>
       <div class="project-body">

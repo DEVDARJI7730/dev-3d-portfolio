@@ -8,7 +8,8 @@ export const projects = [
     tech: ["PHP", "MySQL", "HTML5", "CSS3", "JavaScript", "Bootstrap", "XAMPP", "Git"],
     demoUrl: "https://campusfind-pro.onrender.com",
     githubUrl: "https://github.com/DEVDARJI7730/CampusFind-Pro",
-    icon: "fa-solid fa-map-location-dot"
+    icon: "fa-solid fa-map-location-dot",
+    image: "/campusfind.png"
   },
   {
     id: "IRVision AI",
@@ -19,7 +20,8 @@ export const projects = [
     tech: ["React.js","FastAPI","Python","PyTorch","OpenCV","MongoDB","Google OAuth","JWT","Tailwind CSS"],
     demoUrl: "https://irvision-ai-client.onrender.com",
     githubUrl: "https://github.com/DEVDARJI7730/ISRO",
-    icon: "fa-solid fa-camera"
+    icon: "fa-solid fa-camera",
+    image: "/irvision-ai.jpg"
   },
   {
     id: "skillswap-ai",
@@ -30,7 +32,8 @@ export const projects = [
     tech: ["Next.js", "FastAPI", "Python", "MongoDB", "Tailwind CSS", "WebSockets", "Gemini AI", "Git"],
     demoUrl: "https://skillswap-frontend-1gv8.onrender.com",
     githubUrl: "https://github.com/DEVDARJI7730/skillswap-ai",
-    icon: "fa-solid fa-people-arrows"
+    icon: "fa-solid fa-people-arrows",
+    image: "/skillswap-ai.jpg"
   },
   {
     id: "devora-ai",
@@ -41,7 +44,8 @@ export const projects = [
     tech: ["React.js", "Tailwind CSS", "Framer Motion", "Zustand", "Node.js", "Express.js", "FastAPI", "MongoDB Atlas", "Gemini 3.5 Flash", "FLUX.1"],
     demoUrl: null,
     githubUrl: "https://github.com/DEVDARJI7730/devora-ai",
-    icon: "fa-solid fa-robot"
+    icon: "fa-solid fa-robot",
+    image: "/devora-ai.jpg"
   },
   {
     id: "Developer Portfolio Website",
@@ -52,7 +56,8 @@ export const projects = [
     tech: ["JavaScript","HTML5","CSS3","Vite","Three.js"],
     demoUrl: "https://dev-3d-portfolio.onrender.com",
     githubUrl: "https://github.com/DEVDARJI7730/dev-3d-portfolio",
-    icon: "fa-solid fa-terminal"
+    icon: "fa-solid fa-terminal",
+    image: "/portfolio.jpg"
   }
 ];
 

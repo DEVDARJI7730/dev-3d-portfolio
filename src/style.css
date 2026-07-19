@@ -955,6 +955,17 @@ section {
   filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1));
 }
 
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.08);
+}
+
 .project-card:hover .project-image-placeholder {
   transform: scale(1.1);
 }
@@ -1015,6 +1026,20 @@ section {
   border-color: var(--color-cyan);
   box-shadow: var(--glow-cyan);
   transform: scale(1.1);
+}
+
+.project-overlay-link.disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.project-overlay-link.disabled:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+  transform: none;
 }
 
 .project-body {
