@@ -45,7 +45,7 @@ export const projects = [
     demoUrl: null,
     githubUrl: "https://github.com/DEVDARJI7730/devora-ai",
     icon: "fa-solid fa-robot",
-    image: "/devora-ai.jpg"
+    image: "/devora-ai.png"
   },
   {
     id: "Developer Portfolio Website",
