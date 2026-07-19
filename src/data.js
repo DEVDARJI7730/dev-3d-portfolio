@@ -57,7 +57,7 @@ export const projects = [
     demoUrl: "https://dev-3d-portfolio.onrender.com",
     githubUrl: "https://github.com/DEVDARJI7730/dev-3d-portfolio",
     icon: "fa-solid fa-terminal",
-    image: "/portfolio.jpg"
+    image: "/portfolio.png"
   }
 ];
 
