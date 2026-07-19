@@ -33,7 +33,7 @@ export const projects = [
     demoUrl: "https://skillswap-frontend-1gv8.onrender.com",
     githubUrl: "https://github.com/DEVDARJI7730/skillswap-ai",
     icon: "fa-solid fa-people-arrows",
-    image: "/skillswap-ai.jpg"
+    image: "/skillswap-ai.png"
   },
   {
     id: "devora-ai",
